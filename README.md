@@ -41,8 +41,9 @@ The functions are defined as:
 
     def foo2(xs: List[Int]): Int = ???
 
-Please replace the `???` with your implementation.
-
+Please replace the `???` with your implementation.  You will need to read and
+understand the [ScalaCheck][] properties lower down in the file to figure out what
+these functions should do.
 
 Question 2
 ----------
@@ -96,6 +97,7 @@ Once you have your patch, attach it to an email.
 
 If you are applying this for a position at [goCatch][] directly, please send the email with your solution to <jason@gocatch.com>, otherwise send the email to your recruitment agent.
 
+  [scalacheck]: https://code.google.com/p/scalacheck/
   [git]: http://git-scm.com/
   [goCatch]: http://gocatch.com
   [SBT]: http://www.scala-sbt.org
