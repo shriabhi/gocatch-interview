@@ -8,11 +8,11 @@ object Question1 {
   // Implement foo0, foo1 and foo2 so that all the test pass.
   // Replace ??? with your implemenation.
 
-  def foo0(xs: List[Int]): Int = ???
+  def foo0(xs: List[Int]): Int = 0
 
-  def foo1(xs: List[Int]): Int = ???
+  def foo1(xs: List[Int]): Int = xs.size
 
-  def foo2(xs: List[Int]): Int = ???
+  def foo2(xs: List[Int]): Int = xs.sum
 }
 
 object Question1Properties extends Specification with SpecUtil {

@@ -1,7 +1,9 @@
 
+import java.math.MathContext
 import org.specs2.mutable._
 import org.specs2.ScalaCheck
 import org.scalacheck._, Arbitrary._
+import scala.math.BigDecimal.RoundingMode
 import test.util.SpecUtil
 
 object Question2 {
@@ -9,7 +11,15 @@ object Question2 {
   val zero = BigDecimal(0, mc)
   val one = BigDecimal(1, mc)
 
-  val bstCount: Int => BigDecimal = ???
+
+  def factorial(n:BigDecimal):BigDecimal = if (n==0) 1 else n * factorial(n-1)
+
+  def calculateTreeCombination(nodesNumber : Int) : BigDecimal = {
+    val decimal: BigDecimal = (factorial(BigDecimal(2 * nodesNumber, mc)) / (factorial(BigDecimal(nodesNumber + 1, mc)) * factorial(BigDecimal(nodesNumber, mc))))+0.5
+    BigDecimal.apply(decimal.toBigInt(),mc)
+  }
+
+  val bstCount: Int => BigDecimal = calculateTreeCombination
 }
 
 object Question2Properties extends Specification with SpecUtil {
