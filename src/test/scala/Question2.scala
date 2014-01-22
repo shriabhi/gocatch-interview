@@ -1,9 +1,9 @@
 
-import java.math.MathContext
+
 import org.specs2.mutable._
 import org.specs2.ScalaCheck
 import org.scalacheck._, Arbitrary._
-import scala.math.BigDecimal.RoundingMode
+import scala.collection.immutable.HashMap
 import test.util.SpecUtil
 
 object Question2 {
@@ -12,13 +12,34 @@ object Question2 {
   val one = BigDecimal(1, mc)
 
 
-  def factorial(n:BigDecimal):BigDecimal = if (n==0) 1 else n * factorial(n-1)
+  var map = new HashMap[BigInt,BigInt]
 
-  def calculateTreeCombination(nodesNumber : Int) : BigDecimal = {
-    val decimal: BigDecimal = (factorial(BigDecimal(2 * nodesNumber, mc)) / (factorial(BigDecimal(nodesNumber + 1, mc)) * factorial(BigDecimal(nodesNumber, mc))))+0.5
-    BigDecimal.apply(decimal.toBigInt(),mc)
+  def bd(num:Int):BigInt = BigInt(num)
+
+  def factorialBD(a:BigInt): BigInt = {
+    def fac(n:BigInt):BigInt = {
+      map.get(n) match {
+        case Some(num) => {
+          return num
+        }
+        case None => {
+            if ( n == 1)
+              bd(1)
+            else{
+              val result =n * fac(n-1)
+              map += (n -> result)
+              result
+            }
+          }
+      }
+    }
+    fac(a)
   }
 
+  def calculateTreeCombination(nodesNumber : Int) : BigDecimal = {
+    val decimal: BigInt = (factorialBD(bd(2 * nodesNumber)) / (factorialBD(bd(nodesNumber + 1)) * factorialBD(bd(nodesNumber))))
+    BigDecimal.apply(decimal,mc)
+  }
   val bstCount: Int => BigDecimal = calculateTreeCombination
 }
 
